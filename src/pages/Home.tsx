@@ -11,7 +11,8 @@ export default function Home() {
         Areas of focus<ArrowRight size={36} style={{ width: '1em', height: '1em' }} className="inline align-middle mx-1" />product design, design engineering, design systems, brand/identity, and visual design.
         <br />
         <br />
-        Forever designing<InfinitySymbol size={36} style={{ width: '1em', height: '1em' }} className="inline align-middle ml-1" />
+        Select work of Robert Manukyan<ArrowRight size={36} style={{ width: '1em', height: '1em' }} className="inline align-middle mx-1" />
+        forever designing<InfinitySymbol size={36} style={{ width: '1em', height: '1em' }} className="inline align-middle ml-1" />
       </h1>
     </main>
   )
