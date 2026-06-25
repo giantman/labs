@@ -3,7 +3,7 @@ import starIcon from '../assets/star.svg'
 
 export default function Nav() {
   return (
-    <nav className="grid grid-cols-[auto_1fr_1fr_auto] gap-8 px-4 pt-4 pb-6 items-start">
+    <nav className="grid grid-cols-[auto_1fr_1fr_auto] gap-8 px-4 pt-4 pb-6 items-start fixed top-0 left-0 right-0 z-10">
       <Link
         to="/"
         className="inline-flex items-center gap-1.5 text-sm text-[#1a1917] hover:opacity-50 transition-opacity leading-snug"
