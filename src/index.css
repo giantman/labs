@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
@@ -11,13 +11,13 @@
 
 body {
   margin: 0;
-  background: #ccc5bd;
-  color: #2c2420;
-  font-family: 'Instrument Serif', Georgia, serif;
+  background: #8c8986;
+  color: #1a1917;
+  font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: #2c2420;
-  color: #ccc5bd;
+  background: #1a1917;
+  color: #8c8986;
 }
