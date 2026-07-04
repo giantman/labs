@@ -1,95 +1,63 @@
 import { Link } from 'react-router-dom'
-import starIcon from '../assets/star.svg'
+import logoSrc from '../assets/logo.svg'
 import { caseStudies } from '../data'
 import type { CaseStudy } from '../data'
 
-function chunk<T>(arr: T[], size: number): T[][] {
-  const out: T[][] = []
-  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size))
-  return out
-}
-
-function LeftCard({ study }: { study: CaseStudy }) {
-  return (
-    <Link to={`/work/${study.id}`} className="group block border-r border-[#1a1917]/10">
-      <div className="aspect-[4/3] overflow-hidden">
-        <div className="w-full h-full bg-[#C8C6C3] group-hover:brightness-95 transition-all duration-300" />
-      </div>
-      <div className="px-8 py-4 flex items-baseline justify-between">
-        <p className="text-sm text-[#1a1917]">{study.title}</p>
-        <p className="text-xs text-[#1a1917]/40">{study.tags[0]}</p>
-      </div>
-    </Link>
-  )
-}
-
-function RightCard({ study }: { study: CaseStudy }) {
+function Card({ study }: { study: CaseStudy }) {
   return (
     <Link to={`/work/${study.id}`} className="group block">
-      <div className="aspect-[4/3] overflow-hidden bg-white flex items-center justify-center">
-        <img
-          src={starIcon}
-          alt=""
-          width={28}
-          height={28}
-          className="opacity-15 group-hover:opacity-25 transition-opacity"
-        />
+      <div className="w-full overflow-hidden group-hover:brightness-95 transition-all duration-300" style={{ aspectRatio: '706 / 495' }}>
+        <img src={study.thumbnail ?? '/labs/skeleton.png'} alt="" className="w-full h-full object-cover" />
       </div>
-      <div className="px-8 py-4 flex items-baseline justify-between">
+      <div className="pt-[10px]">
         <p className="text-sm text-[#1a1917]">{study.title}</p>
-        <p className="text-xs text-[#1a1917]/40">{study.tags[0]}</p>
+        <p className="text-xs text-[#1a1917]/40 mt-1">{study.tags[0]}</p>
       </div>
     </Link>
   )
 }
 
 export default function Home() {
-  const rows = chunk(caseStudies, 2)
+  const leftStudies = caseStudies.filter((_, i) => i % 2 === 0)
+  const rightStudies = caseStudies.filter((_, i) => i % 2 !== 0)
 
   return (
     <main>
-      {/* Hero */}
-      <div className="grid grid-cols-2" style={{ height: 'calc(56vh - 72px)', marginTop: '72px' }}>
-        <div className="flex flex-col justify-end px-8 pb-10">
-          <div className="grid grid-cols-2 gap-6">
-            <p className="text-sm text-[#1a1917] leading-snug">
-              Onsite/Offsite is the design practice of Robert Manukyan, designer and design leader based in Los Angeles, CA.
-            </p>
-            <p className="text-sm text-[#1a1917] leading-snug">
-              Multi-disciplinary designer with a focus on AI Product design, design engineering, brand/identity, and visual design.
-            </p>
-          </div>
-        </div>
-        <div className="bg-[#C8C6C3] flex items-center justify-center">
-          <img src={starIcon} alt="" width={24} height={24} className="opacity-30" />
-        </div>
-      </div>
-
-      {/* Brand heading */}
-      <div className="bg-white px-8 py-3 border-t border-b border-[#1a1917]/8">
-        <h1
-          className="text-[#000000] leading-none tracking-tight"
-          style={{ fontFamily: "'Plantin MT Pro', Georgia, serif", fontWeight: 300, fontSize: 'clamp(48px, 11vw, 168px)' }}
-        >
-          Onsite/Offsite
-        </h1>
-      </div>
-
-      {/* Projects grid — pairs of 2 per row */}
+      {/* Hero — right column is flush to top (sits behind transparent fixed nav) */}
       <div>
-        {rows.map((pair, rowIdx) => (
-          <div key={rowIdx} className="grid grid-cols-2 border-b border-[#1a1917]/10">
-            <LeftCard study={pair[0]} />
-            {pair[1] ? (
-              <RightCard study={pair[1]} />
-            ) : (
-              <div className="aspect-[4/3] bg-[#eeeeee]" />
-            )}
+        <div className="grid grid-cols-2" style={{ minHeight: '60vh' }}>
+          <div className="flex flex-col justify-end px-8 pb-10 pt-[91px]">
+            <div className="grid grid-cols-2 gap-6">
+              <p className="text-sm text-[#1a1917] leading-snug">
+                Onsite/Offsite is the design practice of Robert Manukyan, designer and design leader based in Los Angeles, CA.
+              </p>
+              <p className="text-sm text-[#1a1917] leading-snug">
+                Multi-disciplinary designer with a focus on AI, product design, design engineering, brand/identity, and visual design.
+              </p>
+            </div>
           </div>
-        ))}
+          <div className="bg-[#C8C6C3]" />
+        </div>
+
+        {/* Wordmark — inside hero, white ground */}
+        <div className="px-8 pt-14 pb-8">
+          <img src={logoSrc} alt="Onsite/Offsite" className="block w-full h-auto" />
+        </div>
       </div>
 
-      <div className="h-20" />
+      {/* Project grid — 2 independent columns, 32px padding, 24px gap */}
+      <div className="grid grid-cols-2 gap-6 px-8 pt-8 pb-20">
+        <div className="flex flex-col gap-6">
+          {leftStudies.map((study) => (
+            <Card key={study.id} study={study} />
+          ))}
+        </div>
+        <div className="flex flex-col gap-6">
+          {rightStudies.map((study) => (
+            <Card key={study.id} study={study} />
+          ))}
+        </div>
+      </div>
     </main>
   )
 }

@@ -7,9 +7,9 @@ function ImagePlaceholder() {
 
 export default function Work() {
   return (
-    <main className="pt-[72px]">
+    <main className="pt-[91px]">
       {caseStudies.map((study, i) => (
-        <div key={study.id} className="border-t border-[#1a1917]/10 first:border-t-0">
+        <div key={study.id} className="border-t border-b border-[#1a1917]/10 [&+&]:border-t-0">
           {/* Project header */}
           <div className="grid grid-cols-[1fr_1fr_2fr] gap-4 px-8 pt-6 pb-5">
             <p className="text-sm text-[#1a1917]">{`Project 0${i + 1}`}</p>
