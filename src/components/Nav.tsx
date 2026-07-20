@@ -27,20 +27,20 @@ export default function Nav() {
   }
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `text-sm leading-snug transition-opacity hover:opacity-50 ${isActive ? 'text-[#E85430]' : 'text-[#1a1917]'}`
+    `text-base leading-none transition-opacity hover:opacity-50 ${isActive ? 'text-[#E85430]' : 'text-[#1a1917]'}`
 
   return (
-    <nav className={`grid grid-cols-[auto_1fr_1fr_auto] gap-8 px-8 py-9 items-center fixed top-0 left-0 right-0 z-10 transition-colors duration-200 ${scrolled ? 'bg-[#eeeeee]/90 backdrop-blur-sm' : ''}`}>
+    <nav className={`grid grid-cols-4 gap-x-4 gap-y-6 px-4 py-8 items-center fixed top-0 left-0 right-0 z-10 transition-colors duration-200 ${scrolled ? 'bg-[#eeeeee]/90 backdrop-blur-sm' : ''}`}>
       <Link
         to="/"
-        className="inline-flex items-center text-sm text-[#1a1917] hover:opacity-50 transition-opacity leading-none"
+        className="inline-flex items-center px-2 text-[#1a1917] hover:opacity-50 transition-opacity leading-none"
       >
         <span className="inline-block shrink-0" style={{ transform: `rotate(${rotation}deg)` }}>
           <img
             src={starIcon}
             alt=""
-            width={12}
-            height={12}
+            width={20}
+            height={20}
             onMouseEnter={handleStarMouseEnter}
             onAnimationEnd={handleStarAnimationEnd}
             className={`block ${isSpinning ? 'star-spin' : ''}`}
@@ -48,24 +48,22 @@ export default function Nav() {
         </span>
       </Link>
 
-      <div className="flex gap-4">
+      <div className="flex items-center gap-6">
         <NavLink to="/work" className={linkClass}>Work</NavLink>
         <NavLink to="/labs" className={linkClass}>Labs</NavLink>
+        <NavLink to="/profile" className={linkClass}>Profile</NavLink>
       </div>
 
-      <div className="text-sm text-[#1a1917]/50 leading-snug">
+      <div className="text-base text-[#1a1917]/50 font-medium leading-none">
         Design and Engineering
       </div>
 
-      <div className="flex gap-4">
-        <NavLink to="/profile" className={linkClass}>Profile</NavLink>
-        <a
-          href="mailto:manukyanrobert@gmail.com"
-          className="text-sm text-[#1a1917] hover:opacity-50 transition-opacity whitespace-nowrap"
-        >
-          Contact
-        </a>
-      </div>
+      <a
+        href="mailto:manukyanrobert@gmail.com"
+        className="justify-self-end text-base text-[#1a1917] hover:opacity-50 transition-opacity leading-none whitespace-nowrap"
+      >
+        manukyanrobert@gmail.com
+      </a>
     </nav>
   )
 }
