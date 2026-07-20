@@ -49,8 +49,8 @@ export default function Nav() {
       </Link>
 
       <div className="flex items-center gap-6">
-        <NavLink to="/work" className={linkClass}>Work</NavLink>
-        <NavLink to="/labs" className={linkClass}>Labs</NavLink>
+        {/* <NavLink to="/work" className={linkClass}>Work</NavLink>
+        <NavLink to="/labs" className={linkClass}>Labs</NavLink> */}
         <NavLink to="/profile" className={linkClass}>Profile</NavLink>
       </div>
 

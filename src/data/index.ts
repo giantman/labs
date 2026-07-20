@@ -35,6 +35,7 @@ export const caseStudies: CaseStudy[] = [
     },
     tags: ['Product Design', 'AI', 'FinTech'],
     year: 2024,
+    thumbnail: '/projects/hazel/hazel-cover.png',
   },
   {
     id: 'altruist',
@@ -51,6 +52,7 @@ export const caseStudies: CaseStudy[] = [
     },
     tags: ['Product Design', 'FinTech'],
     year: 2023,
+    thumbnail: '/projects/altruist/altruist-cover.png',
   },
   {
     id: 'aeg',
@@ -69,6 +71,7 @@ export const caseStudies: CaseStudy[] = [
     metadata: { 'Role': 'Product Design', 'Client': 'Feedback Intelligence' },
     tags: ['Product Design', 'AI'],
     year: 2022,
+    thumbnail: '/projects/feedback-intelligence/feedback-intelligence-cover.png',
   },
   {
     id: 'cardshoplive',
@@ -78,6 +81,7 @@ export const caseStudies: CaseStudy[] = [
     metadata: { 'Role': 'Product Design' },
     tags: ['Product Design', 'E-commerce'],
     year: 2021,
+    thumbnail: '/projects/cardshoplive/cardshoplive-cover.png',
   },
   {
     id: 'zest-ai',
@@ -87,6 +91,7 @@ export const caseStudies: CaseStudy[] = [
     metadata: { 'Role': 'Product Design' },
     tags: ['Product Design', 'AI', 'FinTech'],
     year: 2021,
+    thumbnail: '/projects/zest-ai/zest-ai-cover.png',
   },
   {
     id: 'stick-ai',
@@ -96,6 +101,7 @@ export const caseStudies: CaseStudy[] = [
     metadata: { 'Role': 'Product Design' },
     tags: ['Product Design', 'AI'],
     year: 2022,
+    thumbnail: '/projects/stick-ai/stick-ai-cover.png',
   },
   {
     id: 'tradesy',
@@ -105,7 +111,7 @@ export const caseStudies: CaseStudy[] = [
     metadata: { 'Role': 'Product Design' },
     tags: ['Product Design', 'Marketplace'],
     year: 2020,
-    thumbnail: '/projects/web-tradesy/tradesy-web-cover_bmtjeo_c_scale,w_2000.jpg',
+    thumbnail: '/projects/web-tradesy/tradesy-cover.png',
     images: [
       '/projects/web-tradesy/trd-home_f2cawg_c_scale,w_2000.jpg',
       '/projects/web-tradesy/trd-collection_mu5sme_c_scale,w_2000.jpg',
@@ -171,7 +177,7 @@ export const caseStudies: CaseStudy[] = [
     metadata: { 'Role': 'Product Design' },
     tags: ['Product Design', 'Real Estate'],
     year: 2020,
-    thumbnail: '/projects/crexi/desktop-search.png',
+    thumbnail: '/projects/crexi/crexi-cover.png',
     images: [
       '/projects/crexi/desktop-search.png',
       '/projects/crexi/mobile-search.png',
@@ -195,6 +201,7 @@ export const caseStudies: CaseStudy[] = [
     metadata: { 'Role': 'Brand / Product Design' },
     tags: ['Brand', 'Product Design'],
     year: 2019,
+    thumbnail: '/projects/icelink/icelink-cover.png',
   },
   {
     id: 'juice-served-here',
@@ -204,7 +211,7 @@ export const caseStudies: CaseStudy[] = [
     metadata: { 'Role': 'Brand / Product Design' },
     tags: ['Brand', 'Product Design'],
     year: 2018,
-    thumbnail: '/projects/juice/jsh-web-home-device_cvvccc_c_scale,w_2000.jpg',
+    thumbnail: '/projects/juice/jsh-cover.png',
     images: [
       '/projects/juice/jsh-web-home-device_cvvccc_c_scale,w_2000.jpg',
       '/projects/juice/jsh-web-cleanse_gjypqv_c_scale,w_2000.jpg',
