@@ -55,14 +55,14 @@ export default function Nav() {
       </div>
 
       <div className="text-base text-[#1a1917]/50 font-medium leading-none">
-        Design and Engineering
+        Design and engineering
       </div>
 
       <a
         href="mailto:manukyanrobert@gmail.com"
         className="justify-self-end text-base text-[#1a1917] hover:opacity-50 transition-opacity leading-none whitespace-nowrap"
       >
-        manukyanrobert@gmail.com
+        Contact
       </a>
     </nav>
   )
