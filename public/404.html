@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <script>
       // Redirect unknown paths back through the SPA router
-      const path = window.location.pathname.replace('/labs', '') || '/'
+      const path = window.location.pathname || '/'
       sessionStorage.setItem('spa-redirect', path + window.location.search)
-      window.location.replace('/labs/')
+      window.location.replace('/')
     </script>
   </head>
   <body></body>

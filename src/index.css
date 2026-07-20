@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: 'Plantin MT Pro';
-  src: url('/labs/PlantinMTProRg.woff') format('woff'),
+  src: url('/PlantinMTProRg.woff') format('woff'),
        url('./assets/fonts/PlantinMTProRg.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
@@ -11,7 +11,7 @@
 
 @font-face {
   font-family: 'Plantin MT Pro';
-  src: url('/labs/PlantinMTProLight.woff') format('woff'),
+  src: url('/PlantinMTProLight.woff') format('woff'),
        url('./assets/fonts/PlantinMTProLight.otf') format('opentype');
   font-weight: 300;
   font-style: normal;

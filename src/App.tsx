@@ -8,7 +8,7 @@ import Profile from './pages/Profile'
 
 export default function App() {
   return (
-    <BrowserRouter basename="/labs">
+    <BrowserRouter>
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
