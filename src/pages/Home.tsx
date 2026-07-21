@@ -1,30 +1,15 @@
 import logoSrc from '../assets/logo.svg'
 import { caseStudies } from '../data'
 
-const thumbnail = (id: string) => caseStudies.find((cs) => cs.id === id)?.thumbnail
-
-const projects = [
-  { id: 'altruist', title: 'Altruist', year: '2021—now', role: 'Product design, design leadership', description: 'Altruist is making financial advice, better, more affordable and accessible to all. A modern day custodian design for the modern financial advisor.' },
-  { id: 'hazel', title: 'Hazel', year: '2024—2025', role: 'Product design, design engineering', description: '....' },
-  { id: 'ethos', title: 'ethos', year: '2022—now', role: 'Product design, design engineering', description: 'Altruists unofficial design system (soon to be official). Purpose built for AI native teams.', hidden: true },
-  { id: 'feedback-intelligence', title: 'Feedback Intelligence', year: '2025 (acquired by ActiveCampaign)', role: 'Branding', description: 'Feedback Intelligence, an AI evaluation and analytics tool that turns raw conversations into actionable performance insights.' },
-  { id: 'alleron', title: 'Alleron', year: '2025', role: 'Brand strategy, visual design', description: 'A tech firm that offers cloud advisory as a service. Guaranteed 100% uptime.', thumbnail: '/projects/alleron/alleron-cover.png' },
-  { id: 'cardshoplive', title: 'CardShopLive', year: '2025', role: 'Brand strategy, product design', description: 'Live' },
-  { id: 'oxen', title: 'OXEN', year: '2024', role: 'Branding, Identity', description: 'An AI platform for creators and builders.', thumbnail: '/projects/oxen/oxen-cover.png' },
-  { id: 'share-vc', title: 'Share VC', year: '2022', role: 'Design, design engineering', description: 'A venture capital fund exploring new entrepreneurial models and building for scale.', video: '/projects/share-vc/share-vc-cover.mp4' },
-  { id: 'zest-ai', title: 'Zest AI', year: '2020—2021', role: 'Design, branding, design engineering', description: 'Build, adopt, and operate AI models for credit risk assessment.' },
-  { id: 'stick-ai', title: 'Stick AI', year: '2019—2020', role: 'Product design, design engineering', description: 'AI purpose built for marketing and sales team (pre GPT-3.5)' },
-  { id: 'crexi', title: 'CREXi', year: '2019—2020', role: 'Product design, design leadership', description: 'Commercial real estate data platform and marketplace.' },
-  { id: 'tradesy', title: 'Tradesy', year: '2012—2018 (acquired by Vestiaire Collective)', role: 'Product design, design engineering, design leadership', description: 'Peer to peer marketplace for designer goods.' },
-  { id: 'juice-served-here', title: 'Juice Served Here', year: '2017', role: 'Design, engineering', description: 'E-commerce' },
-  { id: 'icelink', title: 'IceLink', year: '2019', role: 'Design, engineering', description: 'E-commerce' },
-  { id: 'torani-1', title: 'Torani', year: '2018', role: 'Engineering', description: 'E-commerce', hidden: true },
-  { id: 'torani-2', title: 'Torani', year: '2018', role: 'Engineering', description: 'E-commerce', hidden: true },
-  { id: 'cordwain', title: 'Cordwain', year: '2017', role: 'Design, engineering', description: 'E-commerce', hidden: true },
-  { id: 'platefit', title: 'Platefit', year: '2017', role: 'Engineering', description: 'Marketing website', hidden: true },
-]
-  .filter((project) => !project.hidden)
-  .map((project) => ({ ...project, thumbnail: project.thumbnail ?? thumbnail(project.id) }))
+const projects = caseStudies.map((cs) => ({
+  id: cs.id,
+  title: cs.title,
+  year: cs.metadata['Year'] ?? '',
+  role: cs.metadata['Role'] ?? '',
+  description: cs.shortDescription,
+  thumbnail: cs.thumbnail,
+  video: cs.id === 'share-vc' ? '/projects/share-vc/share-vc-cover.mp4' : undefined,
+}))
 
 export default function Home() {
   return (
@@ -63,47 +48,41 @@ export default function Home() {
 
       {/* Projects */}
       <div className="grid grid-cols-1 gap-4 p-4">
-        <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-x-4 gap-y-2.5 text-base font-medium text-[#1a1917]/30 leading-none whitespace-nowrap">
-          <p className="justify-self-start">Select work</p>
-          <p className="justify-self-start">P(B)</p>
-          <p className="justify-self-start">R(s)</p>
+        <div className="grid grid-cols-[4fr_2fr_2fr_2fr] gap-x-4 border-b border-[#1a1917]/15 pb-6">
+          <p className="text-base font-medium text-[#1a1917] leading-none whitespace-nowrap">Select work. 2012—now</p>
+          <p className="text-base text-[#1a1917]/50 leading-[1.35]">P(B).</p>
+          <p className="text-base text-[#1a1917]/50 leading-[1.35]">Role, Year</p>
+          <p className="text-base text-[#1a1917]/50 leading-[1.35]">—</p>
         </div>
 
         {projects.map((project) => (
           <div
             key={project.id}
-            className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-x-4 border-b border-[#1a1917]/15 pb-6 items-start"
+            className="grid grid-cols-[4fr_2fr_2fr_2fr] gap-x-4 border-b border-[#1a1917]/15 pb-6 items-start"
           >
-            <div className="justify-self-stretch">
+            <div className="justify-self-stretch h-[374px] bg-[#d9d9d9] overflow-hidden">
               {project.video ? (
-                <div className="aspect-[726/550] overflow-hidden">
-                  <video
-                    src={project.video}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                <video
+                  src={project.video}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
               ) : project.thumbnail ? (
-                <img src={project.thumbnail} alt="" className="w-full h-auto block" />
-              ) : (
-                <div className="h-[178px] bg-[#d9d9d9]" />
-              )}
+                <img src={project.thumbnail} alt="" className="w-full h-full object-cover" />
+              ) : null}
             </div>
-            <div className="flex flex-col gap-2">
-              <p className="text-base font-medium text-[#1a1917] leading-none whitespace-nowrap">
-                {project.title}
-              </p>
-              <p className="text-base text-[#1a1917]/50 leading-[1.25]">
-                {project.year}
-              </p>
-            </div>
-            <p className="justify-self-stretch text-base text-[#1a1917]/50 leading-[1.25]">
-              {project.role}
+            <p className="justify-self-start text-base font-medium text-[#1a1917] leading-none whitespace-nowrap">
+              {project.title}
             </p>
-            <p className="justify-self-stretch text-base text-[#1a1917]/50 leading-[1.25]">
+            <div className="justify-self-stretch text-base text-[#1a1917]/50 leading-[1.35]">
+              <p>{project.role}</p>
+              <p>&nbsp;</p>
+              <p>{project.year}</p>
+            </div>
+            <p className="justify-self-stretch text-base text-[#1a1917]/50 leading-[1.35]">
               {project.description}
             </p>
           </div>
