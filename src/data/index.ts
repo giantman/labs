@@ -23,7 +23,7 @@ export const caseStudies: CaseStudy[] = [
   {
     id: 'altruist',
     title: 'Altruist',
-    shortDescription: 'Altruist is making financial advice, better, more affordable and accessible to all. A modern day custodian design for the modern financial advisor.',
+    shortDescription: 'Altruist is making financial advice better, more affordable, and accessible to all. A modern-day custodian designed for the modern financial advisor.',
     description: [
       'Altruist consolidates what was previously a patchwork of vendors — account opening, portfolio management, trading, fee billing, and reporting — into a single cohesive platform. The design work focused on reducing friction across the full advisor workflow, from onboarding a new client to executing trades and managing billing, without sacrificing the precision that compliance-heavy environments demand.',
       'A core focus was information architecture: how to present dense financial data and operational controls in ways that let advisors move quickly with confidence. Work spanned the trading interface, portfolio reporting views, model marketplace, and the onboarding flow — balancing power-user density with clarity for advisors at every stage of practice growth.',
@@ -116,7 +116,7 @@ export const caseStudies: CaseStudy[] = [
   {
     id: 'stick-ai',
     title: 'Stick AI',
-    shortDescription: 'AI purpose built for marketing and sales team (pre GPT-3.5)',
+    shortDescription: 'AI purpose-built for marketing and sales teams (pre GPT-3.5)',
     description: [],
     metadata: { 'Role': 'Product design, design engineering', 'Year': '2019—2020' },
     tags: ['Product Design', 'AI'],
@@ -202,6 +202,13 @@ export const caseStudies: CaseStudy[] = [
     tags: ['Brand', 'Product Design'],
     year: 2019,
     thumbnail: '/projects/icelink/icelink-cover.png',
+    images: [
+      '/projects/icelink/icelink-1.jpg',
+      '/projects/icelink/icelink-2.jpg',
+      '/projects/icelink/icelink-3.jpg',
+      '/projects/icelink/icelink-4.jpg',
+      '/projects/icelink/icelink-5.jpg',
+    ],
   },
   {
     id: 'juice-served-here',
@@ -213,12 +220,11 @@ export const caseStudies: CaseStudy[] = [
     year: 2017,
     thumbnail: '/projects/juice/jsh-cover.png',
     images: [
-      '/projects/juice/jsh-web-home-device_cvvccc_c_scale,w_2000.jpg',
-      '/projects/juice/jsh-web-cleanse_gjypqv_c_scale,w_2000.jpg',
-      '/projects/juice/jsh-web-carton_gm4uba_c_scale,w_2000.jpg',
-      '/projects/juice/jsh-web-checkout_ar1f75_c_scale,w_2000.png',
-      '/projects/juice/jsh-mobile-carton_aoukbr_c_scale,w_2000.jpg',
-      '/projects/juice/jsh-mobile-cleanse_on3gjf_c_scale,w_2000.jpg',
+      '/projects/juice/jsh-1.jpg',
+      '/projects/juice/jsh-2.jpg',
+      '/projects/juice/jsh-3.jpg',
+      '/projects/juice/jsh-4.jpg',
+      '/projects/juice/jsh-5.jpg',
     ],
   },
   {

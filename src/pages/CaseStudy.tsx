@@ -1,69 +1,130 @@
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import { caseStudies } from '../data'
+import { navigateWithViewTransition, projectRowTransitionName, supportsViewTransitions } from '../lib/viewTransition'
+import { EXIT_TRANSITION_MS } from '../lib/projects'
+import ProjectRow from '../components/ProjectRow'
 
-function ImagePlaceholder() {
-  return <div className="w-full h-full bg-[#D0CECC]" />
+const ROMAN_NUMERALS: [number, string][] = [
+  [1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'],
+  [100, 'C'], [90, 'XC'], [50, 'L'], [40, 'XL'],
+  [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I'],
+]
+
+function toRoman(num: number) {
+  let result = ''
+  let remaining = num
+  for (const [value, symbol] of ROMAN_NUMERALS) {
+    while (remaining >= value) {
+      result += symbol
+      remaining -= value
+    }
+  }
+  return result
 }
 
 export default function CaseStudy() {
   const { id } = useParams<{ id: string }>()
-  const study = caseStudies.find((s) => s.id === id)
+  const navigate = useNavigate()
+  const index = caseStudies.findIndex((s) => s.id === id)
+  const study = index === -1 ? undefined : caseStudies[index]
+  const [entered, setEntered] = useState(supportsViewTransitions())
+  const [exitingId, setExitingId] = useState<string | null>(null)
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+  }, [id])
+
+  useEffect(() => {
+    if (supportsViewTransitions()) {
+      setEntered(true)
+      return
+    }
+    setEntered(false)
+    const frame = requestAnimationFrame(() => setEntered(true))
+    return () => cancelAnimationFrame(frame)
+  }, [id])
+
+  const handleProjectClick = (projectId: string) => {
+    if (exitingId) return
+    if (supportsViewTransitions()) {
+      navigateWithViewTransition(() => navigate(`/work/${projectId}`))
+      return
+    }
+    setExitingId(projectId)
+    setTimeout(() => navigate(`/work/${projectId}`), EXIT_TRANSITION_MS)
+  }
 
   if (!study) {
     return (
-      <main className="min-h-screen flex items-center justify-center px-8">
+      <main className="min-h-screen flex items-center justify-center px-4">
         <div>
-          <p className="text-sm text-[#1a1917]/50 mb-4">Not found.</p>
-          <Link to="/work" className="text-sm text-[#1a1917] underline underline-offset-2">
-            ← Work
+          <p className="text-base text-[#1a1917]/50 mb-4">Not found.</p>
+          <Link to="/" className="text-base text-[#1a1917] underline underline-offset-2">
+            ← Home
           </Link>
         </div>
       </main>
     )
   }
 
+  const images = study.images ?? (study.thumbnail ? [study.thumbnail] : [])
+  const paragraph = [study.shortDescription, ...study.description].join(' ')
+  const role = study.metadata['Role']
+
   return (
-    <main className="pt-[72px]">
-      {/* Header */}
-      <div className="grid grid-cols-[1fr_1fr_2fr] gap-4 px-8 pt-6 pb-5 border-b border-[#1a1917]/10">
-        <p className="text-sm text-[#1a1917]">{study.title}</p>
-        <p className="text-sm text-[#1a1917]/40">{study.tags.join(', ')}</p>
-        <div className="text-sm text-[#1a1917]/40 leading-snug">
-          {Object.entries(study.metadata).map(([, v]) => (
-            <span key={v} className="mr-4">{v}</span>
+    <main className="pt-[52px]">
+      <div
+        className={`grid grid-cols-[minmax(0,1fr)_minmax(0,0.5fr)] gap-x-[25px] px-4 py-6 items-start transition-all duration-300 ease-out ${entered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
+        style={{ viewTransitionName: projectRowTransitionName(study.id) }}
+      >
+        {/* Left panel — scrolling image feed */}
+        <div className="flex flex-col gap-[2px]">
+          {images.map((src, i) => (
+            <img key={i} src={src} alt="" className="w-full h-auto block" />
           ))}
+          <div className="w-full aspect-[4/3] bg-[#D0CECC]" />
+          <div className="w-full aspect-[4/3] bg-[#D0CECC]" />
+        </div>
+
+        {/* Right panel — fixed while images scroll */}
+        <div className="sticky top-[76px] flex flex-col gap-6 text-base font-medium text-[#1a1917]/50 leading-[1.5]">
+          <p className="flex gap-3">
+            <span className="shrink-0">{toRoman(index + 1)}.</span>
+            <span>{study.title}</span>
+          </p>
+          <p className="indent-[88px]">{paragraph}</p>
+          {role && (
+            <p>
+              SOW.<br />
+              — {role}
+            </p>
+          )}
         </div>
       </div>
 
-      {/* Content */}
-      <div className="grid grid-cols-[1fr_2.5fr_1fr] gap-4 px-8 py-10 items-start">
-        <div className="text-sm text-[#1a1917] leading-[1.55]">
-          <p className="font-medium mb-3">{study.shortDescription}</p>
-          {study.description.map((para, i) => (
-            <p key={i} className="mb-3 text-[#1a1917]/70">{para}</p>
-          ))}
-        </div>
-
-        <div className="aspect-[4/3]">
-          <ImagePlaceholder />
-        </div>
-
-        <div className="flex flex-col gap-3">
-          <div>
-            <div className="aspect-square"><ImagePlaceholder /></div>
-            <p className="text-xs text-[#1a1917]/40 mt-1.5">Figure 1</p>
-          </div>
-          <div>
-            <div className="aspect-square"><ImagePlaceholder /></div>
-            <p className="text-xs text-[#1a1917]/40 mt-1.5">Figure 2</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="border-t border-[#1a1917]/10 mx-8 py-5">
-        <Link to="/work" className="text-sm text-[#1a1917] hover:opacity-50 transition-opacity">
-          ← Work
-        </Link>
+      {/* Other projects */}
+      <div className="grid grid-cols-3 gap-x-4 gap-y-8 p-4">
+        {caseStudies.map((s) => {
+          if (s.id === study.id) return null
+          return (
+            <ProjectRow
+              key={s.id}
+              project={{
+                id: s.id,
+                title: s.title,
+                year: s.metadata['Year'] ?? '',
+                role: s.metadata['Role'] ?? '',
+                description: s.shortDescription,
+                thumbnail: s.thumbnail,
+                video: s.id === 'share-vc' ? '/projects/share-vc/share-vc-cover.mp4' : undefined,
+              }}
+              onClick={() => handleProjectClick(s.id)}
+              isExiting={exitingId === s.id}
+              viewTransitionName={projectRowTransitionName(s.id)}
+            />
+          )
+        })}
       </div>
     </main>
   )

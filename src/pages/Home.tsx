@@ -1,5 +1,8 @@
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import logoSrc from '../assets/logo.svg'
 import { caseStudies } from '../data'
+import ThumbnailCycle from '../components/ThumbnailCycle'
 
 const projects = caseStudies.map((cs) => ({
   id: cs.id,
@@ -12,10 +15,18 @@ const projects = caseStudies.map((cs) => ({
 }))
 
 export default function Home() {
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.hash === '#work') {
+      document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [location.hash])
+
   return (
     <main>
       {/* Hero */}
-      <div className="flex flex-col pt-[84px]" style={{ minHeight: '100vh' }}>
+      <div className="flex flex-col pt-[52px]" style={{ minHeight: '100vh' }}>
         {/* Content area — text top-right, wordmark bottom-left, space-between */}
         <div className="flex-1 flex flex-col justify-between px-4 py-6">
 
@@ -47,46 +58,12 @@ export default function Home() {
       </div>
 
       {/* Projects */}
-      <div className="grid grid-cols-1 gap-4 p-4">
-        <div className="grid grid-cols-[4fr_2fr_2fr_2fr] gap-x-4 border-b border-[#1a1917]/15 pb-6">
-          <p className="text-base font-medium text-[#1a1917] leading-none whitespace-nowrap">Select work. 2012—now</p>
-          <p className="text-base text-[#1a1917]/50 leading-[1.35]">P(B).</p>
-          <p className="text-base text-[#1a1917]/50 leading-[1.35]">Role, Year</p>
-          <p className="text-base text-[#1a1917]/50 leading-[1.35]">—</p>
-        </div>
+      <div id="work" className="p-4 scroll-mt-[52px]">
+        <p className="text-base font-medium text-[#1a1917] leading-none whitespace-nowrap border-b border-[#1a1917]/15 pb-6 mb-4">
+          Select work. 2012—now
+        </p>
 
-        {projects.map((project) => (
-          <div
-            key={project.id}
-            className="grid grid-cols-[4fr_2fr_2fr_2fr] gap-x-4 border-b border-[#1a1917]/15 pb-6 items-start"
-          >
-            <div className="justify-self-stretch h-[374px] bg-[#d9d9d9] overflow-hidden">
-              {project.video ? (
-                <video
-                  src={project.video}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                />
-              ) : project.thumbnail ? (
-                <img src={project.thumbnail} alt="" className="w-full h-full object-cover" />
-              ) : null}
-            </div>
-            <p className="justify-self-start text-base font-medium text-[#1a1917] leading-none whitespace-nowrap">
-              {project.title}
-            </p>
-            <div className="justify-self-stretch text-base text-[#1a1917]/50 leading-[1.35]">
-              <p>{project.role}</p>
-              <p>&nbsp;</p>
-              <p>{project.year}</p>
-            </div>
-            <p className="justify-self-stretch text-base text-[#1a1917]/50 leading-[1.35]">
-              {project.description}
-            </p>
-          </div>
-        ))}
+        <ThumbnailCycle items={projects} />
       </div>
     </main>
   )

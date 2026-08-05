@@ -6,7 +6,7 @@ function ImagePlaceholder() {
 
 export default function Labs() {
   return (
-    <main className="pt-[91px]">
+    <main className="pt-[52px]">
       {experiments.map((exp, i) => (
         <div key={exp.id} className="border-t border-b border-[#1a1917]/10 [&+&]:border-t-0">
           <div className="grid grid-cols-[1fr_1fr_2fr] gap-4 px-8 pt-6 pb-5">

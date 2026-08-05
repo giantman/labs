@@ -1,6 +1,6 @@
 export default function Profile() {
   return (
-    <main className="pt-[84px] px-4 pb-6">
+    <main className="pt-[52px] px-4 pb-6">
       <div className="grid grid-cols-2 gap-x-[25px] py-6">
         <div />
         <div>
