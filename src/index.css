@@ -19,7 +19,7 @@
 }
 
 @theme {
-  --font-sans: 'Instrument Sans', system-ui, sans-serif;
+  --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
   --font-plantin: 'Plantin MT Pro', Georgia, serif;
 }
@@ -36,7 +36,8 @@ body {
   margin: 0;
   background: #eeeeee;
   color: #1a1917;
-  font-family: 'Instrument Sans', system-ui, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 500;
   font-size: 0.875rem;
   -webkit-font-smoothing: antialiased;
 }

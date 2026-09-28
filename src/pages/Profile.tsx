@@ -1,8 +1,8 @@
 export default function Profile() {
   return (
     <main className="pt-[52px] px-4 pb-6">
-      <div className="grid grid-cols-2 gap-x-[25px] py-6">
-        <div />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[25px] py-6">
+        <div className="hidden md:block" />
         <div>
           <p className="text-base font-medium text-[#1a1917]/50 leading-[1.5]">
             Robert Manukyan is a Los Angeles based designer leading experience design at Altruist. His work spans product design, brand, and design engineering.
@@ -10,8 +10,7 @@ export default function Profile() {
           <img
             src="/profile/robert.jpeg"
             alt="Robert Manukyan"
-            className="block mt-6"
-            style={{ width: '50%', height: 'auto' }}
+            className="block mt-6 w-[70%] md:w-1/2 h-auto"
           />
         </div>
       </div>

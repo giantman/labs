@@ -9,7 +9,7 @@ export default function Labs() {
     <main className="pt-[52px]">
       {experiments.map((exp, i) => (
         <div key={exp.id} className="border-t border-b border-[#1a1917]/10 [&+&]:border-t-0">
-          <div className="grid grid-cols-[1fr_1fr_2fr] gap-4 px-8 pt-6 pb-5">
+          <div className="flex flex-col gap-1 md:grid md:grid-cols-[1fr_1fr_2fr] md:gap-4 px-4 md:px-8 pt-6 pb-5">
             <p className="text-sm text-[#1a1917]">{`Experiment 0${i + 1}`}</p>
             <p className="text-sm text-[#1a1917]/40">{exp.title}</p>
             <div className="text-sm text-[#1a1917]/40 leading-snug">
@@ -19,7 +19,7 @@ export default function Labs() {
             </div>
           </div>
 
-          <div className="grid grid-cols-[1fr_2.5fr_1fr] gap-4 px-8 pb-12 items-start">
+          <div className="flex flex-col gap-6 md:grid md:grid-cols-[1fr_2.5fr_1fr] md:gap-4 px-4 md:px-8 pb-12 md:items-start">
             <div className="text-sm text-[#1a1917] leading-[1.55]">
               <p className="font-medium mb-3">{exp.shortDescription}</p>
             </div>
@@ -28,7 +28,7 @@ export default function Labs() {
               <ImagePlaceholder />
             </div>
 
-            <div className="flex flex-col gap-3">
+            <div className="grid grid-cols-2 md:flex md:flex-col gap-3">
               <div>
                 <div className="aspect-square"><ImagePlaceholder /></div>
                 <p className="text-xs text-[#1a1917]/40 mt-1.5">Detail 1</p>

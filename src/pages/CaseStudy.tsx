@@ -75,7 +75,7 @@ export default function CaseStudy() {
   return (
     <main className="pt-[52px]">
       <div
-        className={`grid grid-cols-[minmax(0,1fr)_minmax(0,0.5fr)] gap-x-[25px] px-4 py-6 items-start transition-all duration-300 ease-out ${entered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
+        className={`grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,0.5fr)] gap-x-[25px] gap-y-6 px-4 py-6 items-start transition-all duration-300 ease-out ${entered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
         style={{ viewTransitionName: projectRowTransitionName(study.id) }}
       >
         {/* Left panel — scrolling image feed */}
@@ -88,12 +88,12 @@ export default function CaseStudy() {
         </div>
 
         {/* Right panel — fixed while images scroll */}
-        <div className="sticky top-[76px] flex flex-col gap-6 text-base font-medium text-[#1a1917]/50 leading-[1.5]">
+        <div className="md:sticky md:top-[76px] flex flex-col gap-6 text-base font-medium text-[#1a1917]/50 leading-[1.5]">
           <p className="flex gap-3">
             <span className="shrink-0">{toRoman(index + 1)}.</span>
             <span>{study.title}</span>
           </p>
-          <p className="indent-[88px]">{paragraph}</p>
+          <p className="indent-[40px] md:indent-[88px]">{paragraph}</p>
           {role && (
             <p>
               SOW.<br />
@@ -104,7 +104,7 @@ export default function CaseStudy() {
       </div>
 
       {/* Other projects */}
-      <div className="grid grid-cols-3 gap-x-4 gap-y-8 p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 p-4">
         {caseStudies.map((s) => {
           if (s.id === study.id) return null
           return (

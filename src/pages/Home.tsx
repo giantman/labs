@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import logoSrc from '../assets/logo.svg'
 import { caseStudies } from '../data'
-import ThumbnailCycle from '../components/ThumbnailCycle'
+import ProjectRail from '../components/ProjectRail'
 
 const projects = caseStudies.map((cs) => ({
   id: cs.id,
@@ -31,8 +31,8 @@ export default function Home() {
         <div className="flex-1 flex flex-col justify-between px-4 py-6">
 
           {/* Text block — right half only */}
-          <div className="grid grid-cols-2 gap-x-[25px] py-6">
-            <div />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[25px] py-6">
+            <div className="hidden md:block" />
             <div className="flex flex-col gap-6">
               <p className="text-base font-medium text-[#1a1917]/50 leading-[1.5]">
                <span className="text-[#eeeeee]">Forever designing &copy;</span>Onsite/Offsite is the design practice of Robert Manukyan. A multi-disciplinary designer with a focus on product design, AI, design engineering, brand/identity, and visual design. Based in Los Angeles, CA. Currently leading design at Altruist.
@@ -59,11 +59,16 @@ export default function Home() {
 
       {/* Projects */}
       <div id="work" className="p-4 scroll-mt-[52px]">
-        <p className="text-base font-medium text-[#1a1917] leading-none whitespace-nowrap border-b border-[#1a1917]/15 pb-6 mb-4">
-          Select work. 2012—now
-        </p>
+        <div className="flex items-baseline justify-between gap-4 border-b border-[#1a1917]/15 pb-6 mb-4">
+          <p className="text-base font-medium text-[#1a1917] leading-none whitespace-nowrap">
+            Select work. 2012—now
+          </p>
+          <p className="text-sm text-[#1a1917]/40 leading-none whitespace-nowrap">
+            Swipe to explore
+          </p>
+        </div>
 
-        <ThumbnailCycle items={projects} />
+        <ProjectRail items={projects} />
       </div>
     </main>
   )
