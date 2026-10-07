@@ -5,6 +5,7 @@ import Work from './pages/Work'
 import CaseStudy from './pages/CaseStudy'
 import Experiments from './pages/Experiments'
 import Profile from './pages/Profile'
+import Explorations from './pages/Explorations'
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/work" element={<Work />} />
         <Route path="/work/:id" element={<CaseStudy />} />
         <Route path="/labs" element={<Experiments />} />
+        <Route path="/explorations" element={<Explorations />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>

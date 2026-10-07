@@ -49,7 +49,8 @@ html {
 
 body {
   margin: 0;
-  background: #eeeeee;
+  /* Pages can override --page-bg; the nav picks it up too. */
+  background: var(--page-bg, #eeeeee);
   color: #1a1917;
   font-family: 'Relevant', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 500;

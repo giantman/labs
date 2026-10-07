@@ -4,6 +4,7 @@ import starIcon from '../assets/star.svg'
 
 const NAV_ITEMS: { to: string; label: string; scrollTargetId?: string }[] = [
   { to: '/work', label: 'Work', scrollTargetId: 'work' },
+  { to: '/explorations', label: 'Explorations' },
   { to: '/profile', label: 'Profile' },
 ]
 
@@ -81,7 +82,7 @@ export default function Nav() {
   }
 
   return (
-    <nav className={`grid grid-cols-[auto_1fr_auto] md:grid-cols-4 gap-x-2 sm:gap-x-4 gap-y-6 p-4 items-center fixed top-0 left-0 right-0 z-10 transition-colors duration-200 ${scrolled ? 'bg-[#eeeeee]/90 backdrop-blur-sm' : ''}`}>
+    <nav className={`grid grid-cols-[auto_1fr_auto] md:grid-cols-4 gap-x-2 sm:gap-x-4 gap-y-6 p-4 items-center fixed top-0 left-0 right-0 z-10 transition-colors duration-200 ${scrolled ? 'bg-[color-mix(in_srgb,var(--page-bg,#eeeeee)_90%,transparent)] backdrop-blur-sm' : ''}`}>
       <Link
         to="/"
         className="inline-flex items-center px-2 text-[#1a1917] hover:opacity-50 transition-opacity leading-none"
@@ -136,7 +137,7 @@ export default function Nav() {
         )}
       </div>
 
-      <div className="hidden md:block text-sm text-[#1a1917]/50 font-medium leading-[1.5]">
+      <div className="hidden lg:block text-sm text-[#1a1917]/50 font-medium leading-[1.5]">
         Design and engineering
       </div>
 
