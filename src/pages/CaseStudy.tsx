@@ -2,7 +2,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useEffect, useLayoutEffect, useState } from 'react'
 import { caseStudies, hasCaseStudy } from '../data'
 import { navigateWithViewTransition, projectRowTransitionName, supportsViewTransitions } from '../lib/viewTransition'
-import { PROJECT_LINKS_ENABLED } from '../lib/projects'
+import { isProjectEnabled } from '../lib/projects'
 import ProjectSplit from '../components/ProjectSplit'
 import ProjectColumns from '../components/ProjectColumns'
 
@@ -97,7 +97,7 @@ export default function CaseStudy() {
       <div className="p-4">
         <ProjectColumns>
           {caseStudies.filter((s) => s.id !== study.id).map((s) => {
-            const linked = PROJECT_LINKS_ENABLED && hasCaseStudy(s)
+            const linked = isProjectEnabled(s.id) && hasCaseStudy(s)
             return (
               <ProjectSplit
                 key={s.id}

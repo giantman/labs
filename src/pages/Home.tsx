@@ -5,7 +5,7 @@ import { caseStudies, hasCaseStudy } from '../data'
 import ProjectSplit from '../components/ProjectSplit'
 import ProjectColumns from '../components/ProjectColumns'
 import { navigateWithViewTransition, projectRowTransitionName } from '../lib/viewTransition'
-import { PROJECT_LINKS_ENABLED } from '../lib/projects'
+import { isProjectEnabled } from '../lib/projects'
 
 const projects = caseStudies.map((cs) => ({
   id: cs.id,
@@ -14,7 +14,7 @@ const projects = caseStudies.map((cs) => ({
   role: cs.metadata['Role'] ?? '',
   thumbnail: cs.thumbnail,
   slides: cs.thumbnailSlides,
-  hasCaseStudy: hasCaseStudy(cs),
+  linked: isProjectEnabled(cs.id) && hasCaseStudy(cs),
 }))
 
 export default function Home() {
@@ -59,12 +59,12 @@ export default function Home() {
               key={project.id}
               project={project}
               onClick={
-                PROJECT_LINKS_ENABLED && project.hasCaseStudy
+                project.linked
                   ? () => navigateWithViewTransition(() => navigate(`/work/${project.id}`))
                   : undefined
               }
               viewTransitionName={projectRowTransitionName(project.id)}
-              disabled={!PROJECT_LINKS_ENABLED || !project.hasCaseStudy}
+              disabled={!project.linked}
             />
           ))}
         </ProjectColumns>
