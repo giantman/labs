@@ -1,6 +1,14 @@
 @import "tailwindcss";
 
 @font-face {
+  font-family: 'Relevant';
+  src: url('/RelevantPVW-Normal.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'Plantin MT Pro';
   src: url('/PlantinMTProRg.woff') format('woff'),
        url('./assets/fonts/PlantinMTProRg.otf') format('opentype');
@@ -19,9 +27,16 @@
 }
 
 @theme {
-  --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-sans: 'Relevant', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
   --font-plantin: 'Plantin MT Pro', Georgia, serif;
+
+  /* Body copy is 13px everywhere — text-sm and text-base are used
+     interchangeably across templates for the same kind of content. */
+  --text-sm: 13px;
+  --text-sm--line-height: 1.4;
+  --text-base: 13px;
+  --text-base--line-height: 1.5;
 }
 
 * {
@@ -36,9 +51,9 @@ body {
   margin: 0;
   background: #eeeeee;
   color: #1a1917;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Relevant', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: 13px;
   -webkit-font-smoothing: antialiased;
 }
 

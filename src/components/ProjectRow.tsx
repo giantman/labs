@@ -13,13 +13,11 @@ export default function ProjectRow({
   onClick,
   isExiting = false,
   viewTransitionName,
-  comingSoon = false,
 }: {
   project: ProjectRowData
   onClick?: () => void
   isExiting?: boolean
   viewTransitionName?: string
-  comingSoon?: boolean
 }) {
   const isLinked = !!onClick
   const wrapperClassName = `flex flex-col gap-3 transition-all duration-300 ease-out ${isLinked ? 'cursor-pointer hover:opacity-70' : ''} ${isExiting ? 'opacity-0 scale-[0.98]' : 'opacity-100 scale-100'}`
@@ -53,9 +51,6 @@ export default function ProjectRow({
           {project.role && project.year ? ' — ' : ''}
           {project.year}
         </p>
-        {comingSoon && (
-          <p className="text-sm text-[#1a1917]/30 leading-[1.35]">Case study coming soon</p>
-        )}
       </div>
     </div>
   )

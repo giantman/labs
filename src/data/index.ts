@@ -3,10 +3,13 @@ export interface CaseStudy {
   title: string
   shortDescription: string
   description: string[]
+  impact?: string[]
   metadata: Record<string, string>
   tags: string[]
   year: number
   thumbnail?: string
+  /** Cycles in place of the thumbnail on project cards. */
+  thumbnailSlides?: string[]
   images?: string[]
 }
 
@@ -34,7 +37,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     metadata: {
       'Year': '2021—now',
-      'Role': 'Product design, design leadership',
+      'Role': 'Product design, design leadership, design engineering',
       'Client': 'Altruist',
     },
     tags: ['Product Design', 'FinTech'],
@@ -46,8 +49,11 @@ export const caseStudies: CaseStudy[] = [
     title: 'Hazel',
     shortDescription: 'AI for wealth managers.',
     description: [
-      'Hazel set out to do more than notetaking — the product needed to feel like a trusted co-pilot woven into an advisor\'s day. The design challenge was making complex AI capabilities legible and trustworthy to a user base that values precision above all. Work centered on the daily digest experience: surfacing the right client signals at the right time without overwhelming or misinforming.',
-      'The meeting workflow — pre-meeting briefs, live transcription, AI-generated summaries, and auto-drafted follow-ups — required careful attention to where automation ends and advisor judgment begins. Designed the document intelligence interface for searching across tax returns and estate plans, balancing speed of retrieval with confidence in accuracy.',
+      'Hazel is more than just a notetaker. It\'s a wealth manager\'s co-pilot.',
+    ],
+    impact: [
+      'When Hazel\'s tax planning agent launched in February 2026, shares of Charles Schwab, LPL Financial, Raymond James and Stifel fell sharply, and the selloff spread to UK wealth managers like St. James\'s Place, as investors weighed what AI could do to advisory fees.',
+      'The work also gave rise to Ethos, Altruist\'s first design system, which elevated both our design team and our engineering organization.',
     ],
     metadata: {
       'Year': '2025—2026',
@@ -59,16 +65,6 @@ export const caseStudies: CaseStudy[] = [
     thumbnail: '/projects/hazel/hazel-cover.png',
   },
   {
-    id: 'zest-ai',
-    title: 'Zest AI',
-    shortDescription: 'AI for credit risk',
-    description: [],
-    metadata: { 'Role': 'Brand strategy, design, design engineering.', 'Year': '2020—2021' },
-    tags: ['Product Design', 'AI', 'FinTech'],
-    year: 2020,
-    thumbnail: '/projects/zest-ai/zest-ai-cover.png',
-  },
-  {
     id: 'feedback-intelligence',
     title: 'Feedback Intelligence',
     shortDescription: 'AI for turning user feedback into actionable performance insights.',
@@ -77,6 +73,21 @@ export const caseStudies: CaseStudy[] = [
     tags: ['Branding', 'AI'],
     year: 2025,
     thumbnail: '/projects/feedback-intelligence/feedback-intelligence-cover.png',
+    thumbnailSlides: [
+      '/projects/feedback-intelligence/feedback-intelligence-slide-1.png',
+      '/projects/feedback-intelligence/feedback-intelligence-slide-2.png',
+      '/projects/feedback-intelligence/feedback-intelligence-slide-3.png',
+    ],
+  },
+  {
+    id: 'zest-ai',
+    title: 'Zest AI',
+    shortDescription: 'AI for credit risk',
+    description: [],
+    metadata: { 'Role': 'Brand strategy, design, design engineering.', 'Year': '2020—2021' },
+    tags: ['Product Design', 'AI', 'FinTech'],
+    year: 2020,
+    thumbnail: '/projects/zest-ai/zest-ai-cover.png',
   },
   {
     id: 'alleron',
@@ -116,6 +127,7 @@ export const caseStudies: CaseStudy[] = [
     metadata: { 'Role': 'Design, design engineering', 'Year': '2024' },
     tags: ['Design', 'Design Engineering'],
     year: 2024,
+    thumbnail: '/projects/share-vc/share-vc-cover.png',
   },
   {
     id: 'stick-ai',
@@ -217,7 +229,7 @@ export const caseStudies: CaseStudy[] = [
   {
     id: 'juice-served-here',
     title: 'Juice Served Here',
-    shortDescription: 'E-commerce',
+    shortDescription: 'Juice Served Here is a cold-pressed juice company founded in Los Angeles in 2012, known for its organic, zero-waste juices, cleanses, nut milks, and tonics.',
     description: [],
     metadata: { 'Role': 'Design, engineering', 'Year': '2017' },
     tags: ['Brand', 'Product Design'],

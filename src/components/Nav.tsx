@@ -20,7 +20,7 @@ export default function Nav() {
 
   const activeTo = NAV_ITEMS.find((item) =>
     item.scrollTargetId
-      ? location.pathname === '/' && workInView
+      ? (location.pathname === '/' && workInView) || location.pathname.startsWith(item.to)
       : location.pathname.startsWith(item.to)
   )?.to ?? null
 
@@ -116,7 +116,7 @@ export default function Nav() {
                 linkRefs.current[item.to] = el
               }}
               className={linkClass({
-                isActive: location.pathname === '/' && workInView,
+                isActive: (location.pathname === '/' && workInView) || location.pathname.startsWith(item.to),
               })}
             >
               {item.label}
