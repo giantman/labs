@@ -181,7 +181,7 @@ export default function ProjectRail({ items }: { items: ProjectRailItem[] }) {
                 openProject(item.id)
               }
             }}
-            className="group shrink-0 snap-start w-[160vw] sm:w-[105vw] md:w-[77vw] lg:w-[60vw] flex flex-col gap-3"
+            className="group shrink-0 snap-start w-[160vw] sm:w-[105vw] md:w-[77vw] lg:w-[31vw] flex flex-col gap-3"
           >
             <div
               className="relative w-full bg-[#d9d9d9] transition-opacity duration-300 ease-out group-hover:opacity-80"

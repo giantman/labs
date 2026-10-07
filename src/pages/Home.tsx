@@ -1,21 +1,22 @@
-import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Fragment, useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import logoSrc from '../assets/logo.svg'
 import { caseStudies } from '../data'
-import ProjectRail from '../components/ProjectRail'
+import ProjectSplit from '../components/ProjectSplit'
+import { navigateWithViewTransition, projectRowTransitionName } from '../lib/viewTransition'
 
 const projects = caseStudies.map((cs) => ({
   id: cs.id,
   title: cs.title,
   year: cs.metadata['Year'] ?? '',
   role: cs.metadata['Role'] ?? '',
-  description: cs.shortDescription,
   thumbnail: cs.thumbnail,
   video: cs.id === 'share-vc' ? '/projects/share-vc/share-vc-cover.mp4' : undefined,
 }))
 
 export default function Home() {
   const location = useLocation()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (location.hash === '#work') {
@@ -63,12 +64,20 @@ export default function Home() {
           <p className="text-base font-medium text-[#1a1917] leading-none whitespace-nowrap">
             Select work. 2012—now
           </p>
-          <p className="text-sm text-[#1a1917]/40 leading-none whitespace-nowrap">
-            Swipe to explore
-          </p>
         </div>
 
-        <ProjectRail items={projects} />
+        <div className="flex flex-col gap-8">
+          {projects.map((project, index) => (
+            <Fragment key={project.id}>
+              {index > 0 && <div className="h-px bg-[#1a1917]/15" />}
+              <ProjectSplit
+                project={project}
+                onClick={() => navigateWithViewTransition(() => navigate(`/work/${project.id}`))}
+                viewTransitionName={projectRowTransitionName(project.id)}
+              />
+            </Fragment>
+          ))}
+        </div>
       </div>
     </main>
   )

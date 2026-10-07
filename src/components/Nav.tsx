@@ -11,6 +11,7 @@ export default function Nav() {
   const [rotation, setRotation] = useState(0)
   const [isSpinning, setIsSpinning] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [workInView, setWorkInView] = useState(false)
   const spinningRef = useRef(false)
   const location = useLocation()
   const navigate = useNavigate()
@@ -19,9 +20,24 @@ export default function Nav() {
 
   const activeTo = NAV_ITEMS.find((item) =>
     item.scrollTargetId
-      ? location.pathname === '/' && location.hash === `#${item.scrollTargetId}`
+      ? location.pathname === '/' && workInView
       : location.pathname.startsWith(item.to)
   )?.to ?? null
+
+  useEffect(() => {
+    if (location.pathname !== '/') {
+      setWorkInView(false)
+      return
+    }
+    const el = document.getElementById('work')
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => setWorkInView(entry.isIntersecting),
+      { rootMargin: '-50% 0px -50% 0px', threshold: 0 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [location.pathname])
 
   useLayoutEffect(() => {
     const measure = () => {
@@ -100,7 +116,7 @@ export default function Nav() {
                 linkRefs.current[item.to] = el
               }}
               className={linkClass({
-                isActive: location.pathname === '/' && location.hash === `#${item.scrollTargetId}`,
+                isActive: location.pathname === '/' && workInView,
               })}
             >
               {item.label}

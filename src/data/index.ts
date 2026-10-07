@@ -235,7 +235,7 @@ export const caseStudies: CaseStudy[] = [
     metadata: { 'Role': 'Design, engineering', 'Year': '2016' },
     tags: ['Brand', 'Product Design'],
     year: 2016,
-    thumbnail: '/projects/cordwain/cordwain-01_ws7rfb_c_scale,w_2000.png',
+    thumbnail: '/projects/cordwain/cordwain-cover.png',
     images: [
       '/projects/cordwain/cordwain-01_ws7rfb_c_scale,w_2000.png',
       '/projects/cordwain/cordwain-02_yqyoqe_c_scale,w_2000.png',
