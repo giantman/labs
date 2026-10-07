@@ -11,18 +11,23 @@ export default function ProjectSplit({
   project,
   onClick,
   viewTransitionName,
+  disabled = false,
+  comingSoon = false,
 }: {
   project: ProjectSplitItem
   onClick?: () => void
   viewTransitionName?: string
+  disabled?: boolean
+  comingSoon?: boolean
 }) {
   return (
     <div
-      role="link"
-      tabIndex={0}
-      onClick={onClick}
-      onKeyDown={(e) => { if (e.key === 'Enter') onClick?.() }}
-      className="group grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-6 md:gap-12 items-start cursor-pointer"
+      role={disabled ? undefined : 'link'}
+      tabIndex={disabled ? undefined : 0}
+      onClick={disabled ? undefined : onClick}
+      onKeyDown={disabled ? undefined : (e) => { if (e.key === 'Enter') onClick?.() }}
+      aria-disabled={disabled || undefined}
+      className={`group grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-6 md:gap-12 items-start ${disabled ? 'cursor-default' : 'cursor-pointer'}`}
     >
       <div className="flex flex-col gap-4 order-2 md:order-1">
         <p className="text-sm font-medium text-[#1a1917]/50 leading-tight">{project.title}</p>
@@ -31,10 +36,13 @@ export default function ProjectSplit({
           {project.role && project.year ? ' — ' : ''}
           {project.year}
         </p>
+        {comingSoon && (
+          <p className="text-sm font-medium text-[#1a1917]/30 leading-tight">Case study coming soon</p>
+        )}
       </div>
 
       <div
-        className="order-1 md:order-2 bg-[#d9d9d9] overflow-hidden transition-opacity duration-300 ease-out group-hover:opacity-80"
+        className={`order-1 md:order-2 bg-[#d9d9d9] overflow-hidden transition-opacity duration-300 ease-out ${disabled ? '' : 'group-hover:opacity-80'}`}
         style={viewTransitionName ? { viewTransitionName } : undefined}
       >
         {project.video ? (

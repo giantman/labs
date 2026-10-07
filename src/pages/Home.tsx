@@ -1,9 +1,10 @@
 import { Fragment, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import logoSrc from '../assets/logo.svg'
-import { caseStudies } from '../data'
+import { caseStudies, hasCaseStudy } from '../data'
 import ProjectSplit from '../components/ProjectSplit'
 import { navigateWithViewTransition, projectRowTransitionName } from '../lib/viewTransition'
+import { PROJECT_LINKS_ENABLED } from '../lib/projects'
 
 const projects = caseStudies.map((cs) => ({
   id: cs.id,
@@ -12,6 +13,7 @@ const projects = caseStudies.map((cs) => ({
   role: cs.metadata['Role'] ?? '',
   thumbnail: cs.thumbnail,
   video: cs.id === 'share-vc' ? '/projects/share-vc/share-vc-cover.mp4' : undefined,
+  hasCaseStudy: hasCaseStudy(cs),
 }))
 
 export default function Home() {
@@ -72,8 +74,14 @@ export default function Home() {
               {index > 0 && <div className="h-px bg-[#1a1917]/15" />}
               <ProjectSplit
                 project={project}
-                onClick={() => navigateWithViewTransition(() => navigate(`/work/${project.id}`))}
+                onClick={
+                  PROJECT_LINKS_ENABLED && project.hasCaseStudy
+                    ? () => navigateWithViewTransition(() => navigate(`/work/${project.id}`))
+                    : undefined
+                }
                 viewTransitionName={projectRowTransitionName(project.id)}
+                disabled={!PROJECT_LINKS_ENABLED || !project.hasCaseStudy}
+                comingSoon={!project.hasCaseStudy}
               />
             </Fragment>
           ))}

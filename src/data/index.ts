@@ -10,6 +10,10 @@ export interface CaseStudy {
   images?: string[]
 }
 
+export function hasCaseStudy(study: Pick<CaseStudy, 'description' | 'images'>) {
+  return study.description.length > 0 || (study.images?.length ?? 0) > 0
+}
+
 export interface Experiment {
   id: string
   title: string

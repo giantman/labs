@@ -1,8 +1,8 @@
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useEffect, useLayoutEffect, useState } from 'react'
-import { caseStudies } from '../data'
+import { caseStudies, hasCaseStudy } from '../data'
 import { navigateWithViewTransition, projectRowTransitionName, supportsViewTransitions } from '../lib/viewTransition'
-import { EXIT_TRANSITION_MS } from '../lib/projects'
+import { EXIT_TRANSITION_MS, PROJECT_LINKS_ENABLED } from '../lib/projects'
 import ProjectRow from '../components/ProjectRow'
 
 const ROMAN_NUMERALS: [number, string][] = [
@@ -119,9 +119,10 @@ export default function CaseStudy() {
                 thumbnail: s.thumbnail,
                 video: s.id === 'share-vc' ? '/projects/share-vc/share-vc-cover.mp4' : undefined,
               }}
-              onClick={() => handleProjectClick(s.id)}
+              onClick={PROJECT_LINKS_ENABLED && hasCaseStudy(s) ? () => handleProjectClick(s.id) : undefined}
               isExiting={exitingId === s.id}
               viewTransitionName={projectRowTransitionName(s.id)}
+              comingSoon={!hasCaseStudy(s)}
             />
           )
         })}
