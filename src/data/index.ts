@@ -43,6 +43,7 @@ export const caseStudies: CaseStudy[] = [
     tags: ['Product Design', 'FinTech'],
     year: 2021,
     thumbnail: '/projects/altruist/altruist-cover.png',
+    images: ['/projects/altruist/altruist-02.png'],
   },
   {
     id: 'hazel',

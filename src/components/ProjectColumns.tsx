@@ -13,9 +13,9 @@ export default function ProjectColumns({ children }: { children: ReactNode }) {
   ))
 
   return (
-    <div className="flex flex-col gap-[80px] md:grid md:grid-cols-[1fr_2fr] md:gap-x-6 md:items-start">
-      <div className="contents md:flex md:flex-col md:gap-[80px]">{items.filter((_, i) => i % 2 === 0)}</div>
-      <div className="contents md:flex md:flex-col md:gap-[80px]">{items.filter((_, i) => i % 2 === 1)}</div>
+    <div className="flex flex-col gap-[60px] md:grid md:grid-cols-[1fr_2fr] md:gap-x-4 md:items-start">
+      <div className="contents md:flex md:flex-col md:gap-[60px]">{items.filter((_, i) => i % 2 === 0)}</div>
+      <div className="contents md:flex md:flex-col md:gap-[60px]">{items.filter((_, i) => i % 2 === 1)}</div>
     </div>
   )
 }
